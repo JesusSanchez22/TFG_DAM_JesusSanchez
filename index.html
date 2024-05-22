@@ -1,0 +1,145 @@
+<!-- Clase en la que empleo HTML y CSS para dar formato y un buen aspecto visual al juego -->
+
+<head>
+	<!-- Importación de la fuente que usaré para la letra -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+	<!-- Etiqueta style en la que ajusto el apartado visual de elementos que se repetirán en varios momentos en el HTML -->
+	<style>
+		*{
+			font-family: "Press Start 2P", system-ui;
+		}
+		h1 {
+			margin: 0;
+		}
+
+		button {
+			border: 0;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button:hover {
+			background-color: #ccc;
+		}
+
+		body {
+			margin: 0;
+		}
+		
+	</style>
+</head>
+
+<!-- Div que contendrá todos los elementos visuales para el combate -->
+<div style="display: inline-block; position: relative;">
+
+	<!-- Div para poner la pantalla en negro, servirá para la transición del mundo a la batalla -->
+	<div
+		id="divSuperpuesto"
+		style="background-color: black; 
+		position: absolute; 
+		top: 0; left: 0; bottom: 0; right: 0;
+		opacity: 0; 
+		pointer-events: none;
+		z-index: 10;">
+	</div>
+
+	<canvas></canvas> <!-- Elemento sobre el que se apoyará nuestro juego -->
+
+	<!-- Bloque en el que aparecerá el nombre de nuestro monstruo y su barra de vida -->
+	<div id="interfazUsuario" style="display: none">
+		<div style="
+			background-color: white; 
+			width: 250px; 
+			position: absolute;
+			top: 500px;
+			left: 200px;
+			border: 4px black solid;
+			padding: 12px;
+		">
+			<h1 style="font-size: 16px">Llama</h1>
+			<div style="position: relative;">
+				<div style="height: 5px; background-color: #ccc; margin-top: 10px;"></div>
+				<div id="barraVidaJugador" style="height: 5px; background-color: green; position: absolute; top: 0; left: 0; right: 0;"></div>	
+			</div>
+		</div>
+
+		<!-- Bloque en el que aparecerá el nombre del monstruo enemigo y su barra de vida -->
+		<div style="
+			background-color: white; 
+			width: 250px; 
+			position: absolute;
+			top: 300px;
+			left: 1350px;
+			border: 4px black solid;
+			padding: 12px;
+		">
+			<h1 style="font-size: 16px">Rana</h1>
+			<div style="position: relative;">
+				<div style="height: 5px; background-color: #ccc; margin-top: 10px;"></div>
+				<div id="barraVidaEnemigo" style="height: 5px; background-color: green; position: absolute; top: 0; left: 0; right: 0;"></div>	
+			</div>
+		</div>
+
+		<!-- Div encargado de gestionar todo respecto al cuadro inferior -->
+		<div style="
+			background-color: white; 
+			height: 200px; 
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			border: 4px black solid;
+			display: flex;
+		">
+			<!-- Div para la caja de diálogo -->
+			<div 
+			  id="cajaDialogo"
+			  style="
+				position:absolute; 
+				top: 0; 
+				right: 0; 
+				left: 0; 
+				bottom: 0; 
+				background-color: white;
+				padding: 15px;
+				display: none;
+				cursor: pointer;"></div>
+
+			<!-- Div para mostrar el menú de ataques -->
+			<div id="menuAtaques" style="width: 66%; display: grid; grid-template-columns: repeat(2, 1fr);">
+				
+			</div>
+
+			<!-- Div para mostrar el tipo de ataque que se selecciona con el ratón -->
+			<div id="tipoAtaqueCaja",
+			style="
+				display: flex; 
+				align-items: center; 
+				justify-content: center; 
+				width: 33%;
+				border-left: 4px black solid;
+			">
+				<h1 style="font-size: 16px;">Tipo de ataque</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Importo un par de librerías que me ayudarán con las animaciones y con los sonidos (gsap y howler)-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Rutas de las distintas clases -->
+<script src="data/audio.js"></script>
+<script src="data/zonasBatalla.js"></script>
+<script src="data/cajasColision.js"></script>
+<script src="data/ataques.js"></script>
+<script src="data/monstruos.js"></script>
+<script src="clases/cajaColision.js"></script>
+<script src="clases/imagenModelo.js"></script>
+<script src="clases/monstruo.js"></script>
+<script src="index.js"></script>
+<script src="escenaBatalla.js"></script>
